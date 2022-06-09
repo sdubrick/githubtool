@@ -16,8 +16,14 @@ Change to this directory and create a python virtual environment. This virtual e
  
 Activate the virtual environment:
 
+#### Linux/MacOS
+
 `source venv/bin/activate`
- 
+
+#### Windows
+
+`venv\Scripts\activate.bat`
+
 Install the required dependencies within the virtual environment:
 
 `pip3 install -r requirements.txt` 
