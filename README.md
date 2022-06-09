@@ -1,24 +1,36 @@
+## Github CLI Example Tool
+
 This simple example CLI tool uses the Github GraphQL API query the last 3 releases or pull requests for a specified repository.
 
-Requires Python 3.8+  https://www.python.org/downloads/
+### Requirements:
+[Python 3.8+](http://www.python.org/downloads/ "Python 3.8+") 
 
-Extract contents of zip to a directory, such as ~/githubtool
+### Setup Instructions
+Extract the contents of zip file to a directory, such as ./githubtool
  
-Change to the directory and create a virtual environment to to run it in.
-cd .\githubtool
-python3 -m venv venv
- 
-Activate virtual environment
-source venv/bin/activate
- 
-Install the required dependencies in the virtual environment
-pip install -r requirements.txt 
- 
-Next, you'll need to create a personal access token from your Github account to query the data. More information can be find at https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token. No additional scopes are required to access public repositories, but to access private repositories you'll need to add the following scope:
-repo:status
+Change to this directory and create a python virtual environment. This virtual environment will allow you to setup an isolated environment to install the required dependencies:
 
-After creating your personal access token, you will need to be added to the .env file included in the package. Replace the "abc" string with the token you generated.
+`cd ./githubtool`
 
+`python3 -m venv venv`
+ 
+Activate the virtual environment:
+
+`source venv/bin/activate`
+ 
+Install the required dependencies within the virtual environment:
+
+`pip3 install -r requirements.txt` 
+
+### Github Authorization
+A Github personal access token will need to be generated in order to access the API and query the data. If you already have a Github account, a personal access token can be generated at https://github.com/settings/tokens.  Please refer to the [Github Personal Access Token Docs](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token  "Github Personal Access Token Docs")  for more detailed instructions on how to do this. For the token access scope, no additional scopes need to be selected to access public repositories, but to access private repositories you'll need to additionally select the following scope:
+
+`repo:status`
+
+After creating your personal access token, you will need to add it to the .env file included in the package.  To do this, replace the "abc" string with the token you generated.
+
+### Using the Tool
+```
 usage: githubtool.py [-h] (-r | -pr) owner repository
 
 positional arguments:
@@ -29,11 +41,17 @@ optional arguments:
   -h, --help           show this help message and exit
   -r, --releases       Outputs the repository's latest 3 releases
   -pr, --pullrequests  Outputs the repository's latest 3 pull requests
-  
-Examples:
-python githubtool.py vuejs vitepress --releases
-python githubtool.py microsoft powertoys --pullrequests
+```
 
+### Examples
+Find the latest 3 releases in VueJS's Vitepress repository:
 
-When complete, you can leave the virtual environment using the command:
-deactivate
+`python3 githubtool.py vuejs vitepress --releases`
+
+Find the latest 3 pull requests in Microsoft's PowerToys repository:
+
+`python3 githubtool.py microsoft powertoys --pullrequests`
+
+When complete, you can deactivate the virtual environment using the command:
+
+`deactivate`
